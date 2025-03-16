@@ -1,11 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hollow Knight - Personajes</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Hollow Knight - Personajes</h1>
+    </header>
+
+    <section>
+        <h2>Lista de Personajes</h2>
+        <button onclick="obtenerPersonajes()">Cargar Personajes</button>
+        <ul id="lista-personajes"></ul>
+    </section>
+
+    <section>
+        <h2>Buscar Personaje por ID</h2>
+        <input type="text" id="buscar-id" placeholder="ID del personaje">
+        <button onclick="buscarPersonaje()">Buscar</button>
+        <div id="detalle-personaje"></div>
+    </section>
+
+    <section>
+        <h2>Añadir Personaje</h2>
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="text" id="descripcion" placeholder="Descripción">
+        <button onclick="agregarPersonaje()">Añadir</button>
+    </section>
+
+    <section>
+        <h2>Eliminar Personaje</h2>
+        <input type="text" id="eliminar-id" placeholder="ID del personaje">
+        <button onclick="eliminarPersonaje()">Eliminar</button>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
