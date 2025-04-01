@@ -7,35 +7,39 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Hollow Knight - Personajes</h1>
-    </header>
+    <header>Hollow Knight - Administrador de Personajes</header>
+    
+    <main>
+        <!-- Sección del Formulario -->
+        <section class="crud-container">
+            <div class="crud-box">
+                <h3>Añadir Personaje</h3>
+                <input type="text" id="nombre" placeholder="Nombre">
+                <input type="text" id="descripcion" placeholder="Descripción (máx. 200)">
+                <button onclick="CRUD.agregarPersonaje()">Añadir</button>
+            </div>
 
-    <section>
-        <h2>Lista de Personajes</h2>
-        <button onclick="obtenerPersonajes()">Cargar Personajes</button>
-        <ul id="lista-personajes"></ul>
-    </section>
+            <div class="crud-box">
+                <h3>Buscar Personaje</h3>
+                <input type="text" id="buscar-id" placeholder="ID del personaje">
+                <button onclick="CRUD.buscarPersonaje()">Buscar</button>
+                <div id="detalle-personaje"></div>
+            </div>
 
-    <section>
-        <h2>Buscar Personaje por ID</h2>
-        <input type="text" id="buscar-id" placeholder="ID del personaje">
-        <button onclick="buscarPersonaje()">Buscar</button>
-        <div id="detalle-personaje"></div>
-    </section>
+            <div class="crud-box">
+                <h3>Eliminar Personaje</h3>
+                <input type="text" id="eliminar-id" placeholder="ID del personaje">
+                <button onclick="CRUD.eliminarPersonaje()">Eliminar</button>
+            </div>
+        </section>
 
-    <section>
-        <h2>Añadir Personaje</h2>
-        <input type="text" id="nombre" placeholder="Nombre">
-        <input type="text" id="descripcion" placeholder="Descripción">
-        <button onclick="agregarPersonaje()">Añadir</button>
-    </section>
-
-    <section>
-        <h2>Eliminar Personaje</h2>
-        <input type="text" id="eliminar-id" placeholder="ID del personaje">
-        <button onclick="eliminarPersonaje()">Eliminar</button>
-    </section>
+        <!-- Sección de la Lista -->
+        <section class="crud-box">
+            <h2>Lista de Personajes</h2>
+            <button onclick="CRUD.obtenerPersonajes()">Cargar Personajes</button>
+            <ul id="lista-personajes"></ul>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
