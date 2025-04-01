@@ -1,7 +1,7 @@
 const API_URL = "http://localhost:8080/personajes/";
 
-document.getElementById("buscar-id").addEventListener("input", validarID);
-document.getElementById("eliminar-id").addEventListener("input", validarID);
+// document.getElementById("buscar-id").addEventListener("input", validarID);
+// document.getElementById("eliminar-id").addEventListener("input", validarID);
 document.getElementById("descripcion").addEventListener("input", validarDescripcion);
 
 const CRUD = {
@@ -14,7 +14,7 @@ const CRUD = {
                 lista.innerHTML = "";
                 data.forEach(personaje => {
                     const li = document.createElement("li");
-                    li.textContent = `${personaje.id}: ${personaje.nombre} - ${personaje.descripcion}`;
+                    li.textContent = `${personaje._id}: ${personaje.nombre} - ${personaje.descripcion}`;
                     lista.appendChild(li);
                 });
             })
@@ -75,9 +75,9 @@ const CRUD = {
     }
 };
 
-function validarID(event) {
-    event.target.value = event.target.value.replace(/\D/g, "");
-}
+// function validarID(event) {
+//     event.target.value = event.target.value.replace(/\D/g, "");
+// }
 
 function validarDescripcion(event) {
     if (event.target.value.length > 200) {

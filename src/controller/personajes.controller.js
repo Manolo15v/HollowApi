@@ -19,6 +19,7 @@ export default class PersonajesControler {
 
     async getById (req, res) {
         const {id} = req.params
+        
         const personaje = await personajesDAO.getById(id);
     
         if (!personaje) res.sendStatus(404);
