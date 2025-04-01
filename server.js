@@ -1,53 +1,56 @@
-const express = require('express');
-const {json, static} = express;
-const {Server} = require( 'http');
-const Container = require("./src/container");
-const cors = require("cors");
+import express, {json, static as stc} from "express";
+import { Server as HttpServer } from "http";
+import cors from "cors";
 
-const personajes = new Container("./personajes.txt");
+import dotenv from 'dotenv';
+import PersonajesRouter from "./src/router/personajes.router.js";
 
 const app = express();
-const httpServer = Server(app);
+const httpServer = HttpServer(app);
 
-const PORT = 8080;
+dotenv.config()
 
 app.use(cors());
 app.use(json());
-app.use(static('public'));
+app.use(stc('public'));
 
-app.get("/personajes/", async (req, res) => {
-    res.send(await personajes.getAll());
-});
+const personajes = new PersonajesRouter();
 
-app.get("/personajes/:id", async (req, res) => {
-    const {id} = req.params
-    const personaje = await personajes.getById(parseInt(id));
+app.use("/personajes", personajes.start());
 
-    if (!personaje) res.status(404);
+// app.get("/personajes/", async (req, res) => {
+//     res.send(await personajes.getAll());
+// });
+
+// app.get("/personajes/:id", async (req, res) => {
+//     const {id} = req.params
+//     const personaje = await personajes.getById(parseInt(id));
+
+//     if (!personaje) res.status(404);
         
-    res.send(personaje);    
-});
+//     res.send(personaje);    
+// });
 
-app.post("/personajes/agregar", async (req, res) => {
-    const personaje = req.body;
+// app.post("/personajes/agregar", async (req, res) => {
+//     const personaje = req.body;
     
-    const id = await personajes.save(personaje);
+//     const id = await personajes.save(personaje);
 
-    if (!id) res.sendStatus(500);
+//     if (!id) res.sendStatus(500);
 
-    res.sendStatus(201);
-})
+//     res.sendStatus(201);
+// })
 
-app.delete("/personajes/:id", async (req, res) => {
-    const {id} = req.params;
-    const personaje = await personajes.deleteById(parseInt(id));
+// app.delete("/personajes/:id", async (req, res) => {
+//     const {id} = req.params;
+//     const personaje = await personajes.deleteById(parseInt(id));
 
-    if (!personaje) res.status(404);
+//     if (!personaje) res.status(404);
         
-    res.send(personaje); 
+//     res.send(personaje); 
 
-});
+// });
 
-const server = httpServer.listen(PORT, () => {
+const server = httpServer.listen(process.env.PORT, () => {
     console.log(`http://localhost:${server.address().port}`);
 });
