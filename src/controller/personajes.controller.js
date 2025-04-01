@@ -19,7 +19,7 @@ export default class PersonajesControler {
 
     async getById (req, res) {
         const {id} = req.params
-        const personaje = await personajesDAO.getById(parseInt(id));
+        const personaje = await personajesDAO.getById(id);
     
         if (!personaje) res.sendStatus(404);
             
@@ -38,7 +38,7 @@ export default class PersonajesControler {
 
     async delete (req, res) {
         const {id} = req.params;
-        const personaje = await personajesDAO.deleteById(parseInt(id));
+        const personaje = await personajesDAO.deleteById(id);
     
         if (!personaje) res.status(404);
             
